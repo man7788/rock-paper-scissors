@@ -10,11 +10,11 @@ let choiceNum = Math.floor(Math.random() * 3);
 
 switch (choiceNum) {
   case 0:
-    return 'rock';
+    return 'Rock';
   case 1:
-    return 'paper';
+    return 'Paper';
   case 2:
-    return 'scissors';
+    return 'Scissors';
 }};
 
 // Make player's select case-insensitive
@@ -35,7 +35,7 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
 
   let result;
-  if (playerSelection === computerSelection) {
+  if (playerSelection === computerSelection.toLowerCase()) {
     result = 'Draw!'
   }
 
@@ -49,16 +49,19 @@ function playRound(playerSelection, computerSelection) {
   }
   
   let computerNum;
-  if (computerSelection === 'rock') {
+  if (computerSelection === 'Rock') {
     computerNum = 0;
-  } else if (computerSelection === 'paper') {
+  } else if (computerSelection === 'Paper') {
     computerNum = 1;
-  } else if (computerSelection === 'scissors') {
+  } else if (computerSelection === 'Scissors') {
     computerNum = 3;
   }
-  
-  let playerWin = `You Win! ${playerSelection} beats ${computerSelection}`
-  let playerLose = `You Lose! ${computerSelection} beats ${playerSelection}`
+
+  let playerFirstWord = playerSelection.toUpperCase();
+  playerFirstWord = playerFirstWord.slice(0, 1);
+
+  let playerWin = `You Win! ${playerFirstWord + playerSelection.slice(1)} beats ${computerSelection}`
+  let playerLose = `You Lose! ${computerSelection} beats ${playerFirstWord + playerSelection.slice(1)}`
   switch (playerNum - computerNum) {
     case -3:
       result = playerWin;
@@ -107,11 +110,11 @@ function game() {
   }
 
   if (playerPoint > computerPoint) {
-    return 'Result: Player Wins';
+    return 'Result: Player Wins!';
   } else if (playerPoint < computerPoint) {
-    return 'Result: Computer Wins';
+    return 'Result: Computer Wins!';
   } else {
-    return 'Result: Draw';
+    return 'Result: Draw!';
   }
 }
 console.log(game());

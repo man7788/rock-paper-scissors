@@ -1,9 +1,13 @@
+'use strict';
+
+// Randomly generate a number
+// Assign the number to a variable
+// Assign the generated number to Rock/Paper/Scissors
+// Return either Rock/Paper/Scissors
 function getComputerChoice() {
-//Randomly generate a number
-//Assign the number to a variable
+
 let choiceNum = Math.floor(Math.random() * 3);
-//Assign the generated number to Rock/Paper/Scissors
-//Return either Rock/Paper/Scissors
+
 switch (choiceNum) {
   case 0:
     return 'rock';
@@ -13,49 +17,87 @@ switch (choiceNum) {
     return 'scissors';
 }};
 
-//Make player's select case-insensitive
-//Result a draw if two selects equal
-//Compare 2 selects, total 6 ways win or lose
-//Return result
+// Make player's select case-insensitive
+// Result a draw if two selects equal
+// Compare 2 selects, total 6 ways win or lose
+// Return result
+// result = playerNum - computerNum;
+// Rock - Paper = -1, lose
+// Paper - Scissors = -2, lose
+// Scissors - Rock = 3, lose
+
+// Rock - Scissors = -3, win
+// Paper - Rock = 1, win
+// Scissors - Paper = 2, win
+
+
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toLowerCase();
 
+  let result;
   if (playerSelection === computerSelection) {
-    let result = 'Draw!';
-    return result;
+    result = 'Draw!'
   }
 
-  if (playerSelection === 'rock' && computerSelection === 'paper') {
-    let result = 'You Lose! Paper beats Rock'
-    return result;
+  let playerNum;
+  if (playerSelection === 'rock') {
+    playerNum = 0;
+  } else if (playerSelection === 'paper') {
+    playerNum = 1;
+  } else if (playerSelection === 'scissors') {
+    playerNum = 3;
   }
-
-  if (playerSelection === 'rock' && computerSelection === 'scissors') {
-    let result = 'You Win! Rock beats Scissors'
-    return result;
+  
+  let computerNum;
+  if (computerSelection === 'rock') {
+    computerNum = 0;
+  } else if (computerSelection === 'paper') {
+    computerNum = 1;
+  } else if (computerSelection === 'scissors') {
+    computerNum = 3;
   }
-
-  if (playerSelection === 'paper' && computerSelection === 'rock') {
-    let result = 'You Win! Paper beats Rock'
-    return result;
-  }
-
-  if (playerSelection === 'paper' && computerSelection === 'scissors') {
-    let result = 'You Lose! Scissors beats Paper'
-    return result;
-  }
-
-  if (playerSelection === 'scissors' && computerSelection === 'rock') {
-    let result = 'You Lose! Rock beats Scissors'
-    return result;
-  }
-
-  if (playerSelection === 'scissors' && computerSelection === 'paper') {
-    let result = 'You Win! Scissors beats Paper'
-    return result;
-  }
+  
+  let playerWin = `You Win! ${playerSelection} beats ${computerSelection}`
+  let playerLose = `You Lose! ${computerSelection} beats ${playerSelection}`
+  switch (playerNum - computerNum) {
+    case -3:
+      result = playerWin;
+      return result;
+    case 1:
+      result = playerWin;
+      return result;
+    case 2:
+      result = playerWin;
+      return result;
+    case -1:
+      result = playerLose;
+      return result;
+    case -2:
+      result = playerLose;
+      return result;
+    case 3:
+      result = playerLose;
+      return result;
+    }
+  return result;
 }
 
-const playerSelection = "rock";
+const playerSelection = "scissors";
 const computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
+
+// Put playRound() inside a for loop
+// Declare 2 variables, increment each time counts a win
+// Display win result
+
+function game() {}
+  
+  // let gameEnd;
+  // if (playerGame > computerGame) {
+  //   gameEnd = 'Player Won!';
+  // } else if (playerGame < computerGame) {
+  //   gameEnd = 'Computer Won!';
+  // } else {
+  //   gameEnd = 'Draw!'
+  // };
+

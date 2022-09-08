@@ -82,22 +82,38 @@ function playRound(playerSelection, computerSelection) {
   return result;
 }
 
-const playerSelection = "scissors";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+// const playerSelection = prompt('Enter');
+// const computerSelection = getComputerChoice();
+// console.log(playRound(playerSelection, computerSelection));
 
 // Put playRound() inside a for loop
 // Declare 2 variables, increment each time counts a win
 // Display win result
 
-function game() {}
+function game() {
+  let playGame;
+  let playerPoint = 0;
+  let computerPoint = 0;
+  for (let i = 0; i < 5; i++) {
+    const playerSelection = prompt('Enter');
+    const computerSelection = getComputerChoice();
+    playGame = playRound(playerSelection, computerSelection);
+    console.log(playGame);
+    if (playGame.slice(4, 7) === 'Win') {
+      playerPoint++;
+    } else if (playGame.slice(4, 8) === 'Lose') {
+      computerPoint++;
+    } else { continue; }
+  }
+
+  if (playerPoint > computerPoint) {
+    return 'Result: Player Wins';
+  } else if (playerPoint < computerPoint) {
+    return 'Result: Computer Wins';
+  } else {
+    return 'Result: Draw';
+  }
+}
+console.log(game());
   
-  // let gameEnd;
-  // if (playerGame > computerGame) {
-  //   gameEnd = 'Player Won!';
-  // } else if (playerGame < computerGame) {
-  //   gameEnd = 'Computer Won!';
-  // } else {
-  //   gameEnd = 'Draw!'
-  // };
 
